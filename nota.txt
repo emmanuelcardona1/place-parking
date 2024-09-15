@@ -1,0 +1,8 @@
+¡IMPORTANTE LEER ANTES!
+
+paleta de colores :  #AF6543 // este es el numero de color principal por si lo van a utilizar 
+
+ Tipo de del proyecto fuente: <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+

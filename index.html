@@ -364,12 +364,12 @@
                     <h2>Iniciar sesión</h2>
                     <div class="input-contenedor">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="email" required placeholder="Ingrese su usuario:">
+                        <input type="text" id="usuario" required placeholder="Ingrese su usuario:">
                         <label for="#">Usuario:</label>
                     </div>
                     <div class="input-contenedor">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" required placeholder="Ingrese su contraseña:">
+                        <input type="password" id="contraseña" required placeholder="Ingrese su contraseña:">
                         <label for="#">Contraseña:</label>
                     </div>
                     <div class="olvidar">
@@ -380,11 +380,9 @@
                     </div>
                 </form>
                 <div>
-                    <a href="" class="button">
 
-                        <button type="submit"  style="background-color: #AF6543 ;"   >Ingresar</button>
+                        <button type="submit"  id="ingreso" onclick=" ingresar()" style="background-color: #AF6543 ;"   >Ingresar</button>
 
-                    </a>
                 </div>
             </div>
   
@@ -431,6 +429,7 @@
         </div>
     </footer>
     
+    <script src="index.js"></script>
     
       
 </body>

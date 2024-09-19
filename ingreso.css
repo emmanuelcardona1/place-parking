@@ -1,0 +1,249 @@
+body {
+    background-color: rgb(204, 203, 203);
+}
+
+button {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #ffffff;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+
+
+}
+
+button:hover {
+    background: #ffffff;
+}
+
+button>svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+button:hover svg {
+    transform: translateX(5px);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.placa {
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+
+}
+
+.titulo_placa {
+
+    display: flex;
+    margin-top: 6px;
+    justify-content: center;
+    font-size: 55px;
+
+}
+
+#placa {
+    padding: 18px !important;
+    font-size: 35px !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.titulo_tipo {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
+    font-size: 45px;
+}
+
+.tipo_vehiculo {
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+#tipo_vehiculo {
+    padding: 18px !important;
+    font-size: 35px !important;
+    text-transform: uppercase;
+    text-align: center;
+    justify-content: center;
+}
+
+/* From Uiverse.io by Li-Deheng */
+.btn-conteiner {
+
+    display: flex;
+    justify-content: center;
+    --color-text: #ffffff;
+    --color-background: #AF6543;
+    --color-outline: #ff145b80;
+    --color-shadow: #00000080;
+
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: 1s;
+    border-radius: 100px;
+    box-shadow: 0 0 0.2em 0 var(--color-background);
+    margin-top: 125px;
+}
+
+.btn-content:hover,
+.btn-content:focus {
+    transition: 0.5s;
+    -webkit-animation: btn-content 1s;
+    animation: btn-content 1s;
+    outline: 0.1em solid transparent;
+    outline-offset: 0.2em;
+    box-shadow: 0 0 0.4em 0 var(--color-background);
+}
+
+.btn-content .icon-arrow {
+    transition: 0.5s;
+    margin-right: 0px;
+    transform: scale(0.6);
+}
+
+.btn-content:hover .icon-arrow {
+    transition: 0.5s;
+    margin-right: 25px;
+}
+
+.icon-arrow {
+    width: 20px;
+    margin-left: 15px;
+    position: relative;
+    top: 6%;
+}
+
+/* SVG */
+#arrow-icon-one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.btn-content:hover #arrow-icon-three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.btn-content:hover #arrow-icon-one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.btn-content:hover #arrow-icon-two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+
+    50% {
+        fill: var(--color-background);
+    }
+
+    100% {
+        fill: white;
+    }
+}
+
+/* Button animations */
+@-webkit-keyframes btn-content {
+    0% {
+        outline: 0.2em solid var(--color-background);
+        outline-offset: 0;
+    }
+}
+
+@keyframes btn-content {
+    0% {
+        outline: 0.2em solid var(--color-background);
+        outline-offset: 0;
+    }
+}
+
+
+.radio-container {
+    display: flex;
+    gap: 20px;
+    /* Separación entre los elementos */
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.circular-radio {
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    user-select: none;
+  
+}
+
+.circular-radio input {
+    display: none;
+  
+    /* Ocultamos el radio original */
+}
+
+.circular-radio span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    /* Espacio entre el círculo y el texto */
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    color: transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+    font-size: 18px;
+   
+}
+
+input[type="radio"]:checked+.circular-radio span {
+    background-color: #AF6543;
+    border-color: #AF6543;
+    color: white;
+   
+}
+
+.circular-radio input:focus+span {
+    box-shadow: 0 0 5px #AF6543(0, 150, 0, 0.8);
+    /* Efecto de enfoque accesible */
+}
+
+.circular-radio span:before {
+    content: "";
+}

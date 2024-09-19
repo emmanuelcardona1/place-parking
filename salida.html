@@ -340,6 +340,89 @@
 
 </head>
 <body>
+    <header>
+        <header>
+            <footer class="text-gray-900 body-font" style="background-color: #AF6543; ">
+                <div class="container px-2 py-4 mx-auto flex items-center sm:flex-row flex-col">
+                    <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+                        <img src="imgIndex/DeWatermark.ai_1725924428923.png" alt="" style="width: 50px;">
+                        <span class="ml-3 text-xl">PLACE PARKING</span>
+                    </a>
     
+                    <button style="display: flex ; margin-left: auto;">
+                        <span>salida</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 74" height="34" width="34">
+                            <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37"></circle>
+                            <path fill="black"
+                                d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z">
+                            </path>
+                        </svg>
+                    </button>
+    
+    
+                </div>
+            </footer>
+        </header>
+        <h1>Salida de Vehículo</h1>
+    </header>
+
+    <div class="contenedor-form">
+        <form>
+            <div class="entrada-salida">
+                <div class="campo">
+                    <label for="fecha_entrada">Fecha de entrada:</label>
+                    <input type="date" id="fecha_entrada" name="fecha_entrada">
+                </div>
+                <div class="campo">
+                    <label for="hora_entrada">Hora de entrada:</label>
+                    <input type="time" id="hora_entrada" name="hora_entrada">
+                </div>
+                <div class="campo">
+                    <label for="fecha_salida">Fecha de salida:</label>
+                    <input type="date" id="fecha_salida" name="fecha_salida">
+                </div>
+                <div class="campo">
+                    <label for="hora_salida">Hora de salida:</label>
+                    <input type="time" id="hora_salida" name="hora_salida">
+                </div>
+            </div>
+
+            <div class="campo">
+                <label for="precio_total">Precio total (COP):</label>
+                <input type="text" id="precio_total" name="precio_total" readonly>
+            </div>
+
+            <div class="btn-conteiner">
+                <button type="button" class="btn-content" onclick="calcularPrecio()">Calcular Precio
+                    <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                        <path d="M5 12h13M12 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function calcularPrecio() {
+            const fechaEntrada = new Date(document.getElementById('fecha_entrada').value + 'T' + document.getElementById('hora_entrada').value);
+            const fechaSalida = new Date(document.getElementById('fecha_salida').value + 'T' + document.getElementById('hora_salida').value);
+
+            if (!fechaEntrada || !fechaSalida) {
+                alert("Por favor ingresa la fecha y hora de entrada y salida.");
+                return;
+            }
+
+            const tiempoTotalHoras = (fechaSalida - fechaEntrada) / (1000 * 60 * 60);  // Diferencia en horas
+            if (tiempoTotalHoras <= 0) {
+                alert("La fecha y hora de salida debe ser posterior a la de entrada.");
+                return;
+            }
+
+            const precioPorHora = 5000;  // Precio por hora en COP
+            const precioTotal = Math.ceil(tiempoTotalHoras) * precioPorHora;  // Redondear hacia arriba
+
+            document.getElementById('precio_total').value = precioTotal.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+        }
+    </script>
 </body>
 </html>

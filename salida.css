@@ -54,39 +54,72 @@ header h1 {
 }
 
 .btn-conteiner {
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center!important;
 }
 
 .btn-content {
-    background-color: #AF6543;
-    color: #ffffff;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    background-color: #AF6543!important;
+    color: #ffffff!important;
+    padding: 15px 30px!important;
+    border-radius: 50px!important;
+    font-size: 20px!important;
+    font-weight: bold!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    border: none!important;
+    cursor: pointer!important;
+    transition: background-color 0.3s ease!important;
+    margin-top: 20px!important;
 }
 
 .btn-content:hover {
-    background-color: #914a2c;
+    background-color: #914a2c!important;
 }
 
 .icon-arrow {
-    margin-left: 10px;
-    transition: margin-left 0.3s ease;
+    margin-left: 10px!important;
+    transition: margin-left 0.3s ease!important;
 }
 
 .btn-content:hover .icon-arrow {
-    margin-left: 20px;
+    margin-left: 20px!important;
 }
 
 .btn-content:active {
+    transform: scale(0.95)!important;
+}
+
+button {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #ffffff;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+
+
+}
+
+button:hover {
+    background: #ffffff;
+}
+
+button>svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+button:hover svg {
+    transform: translateX(5px);
+}
+
+button:active {
     transform: scale(0.95);
 }

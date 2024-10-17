@@ -364,41 +364,103 @@
             </div>
         </footer>
     </header>
-    <main>
-        <form action="">
-            <fieldset>
+    <main class="contenido">
+        <div class="cuadro_ingreso">
+            <form action="">
+                <fieldset>
 
+                    <strong>
+                        <h1 class="titulo_placa">Placa Vehiculo</h1>
+                    </strong>
+                    <div class="placa ">
+
+                        <label for="text"></label>
+                        <input type="text" id="placa" maxlength="6" placeholder="Digite la placa ">
+                    </div>
+                    <strong>
+                        <h1 class="titulo_tipo"> Tipo Vehiculo</h1>
+                    </strong>
+                    <strong>
+
+                    </strong>
+                    <div class="placa ">
+
+                        <label for="text"></label>
+                        <input type="text" id="tipo" maxlength="7" placeholder="Tipo de Vehiculo ">
+                    </div>
+
+
+
+
+
+                </fieldset>
+            </form>
+
+
+            <div class="btn-conteiner">
+                <button class="btn-content mt-10" onclick="entrada()">
+                    Registrar
+                </button>
+            </div>
+        </div>
+        <div class="Tabla_datos">
+            <section class="text-center mt-10">
                 <strong>
-                    <h1 class="titulo_placa">Placa Vehiculo</h1>
+                    <h2 class="titulo_historial">Historial de Entrada y Salida</h2>
                 </strong>
-                <div class="placa ">
+                <div class="flex justify-center mt-5">
+                    <div class="bg-white shadow-lg p-10 rounded-lg w-full max-w-5xl">
+                        <table id="tabla" class="w-full text-left table-auto text-lg">
+                            <thead>
+                                <tr class="bg-gray-100 text-xl">
+                                    <th class="px-6 py-4">Placa</th>
+                                    <th class="px-6 py-4">Tipo de Vehículo</th>
+                                    <th class="px-6 py-4">Hora de Entrada</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                    <label for="text"></label>
-                    <input   type="text" id="placa" maxlength="6" placeholder="Digite la placa " >
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <strong>
-                    <h1 class="titulo_tipo"> Tipo Vehiculo</h1>
-                </strong>
+            </section>
+        </div>
 
-                <div class="radio-container">
-                    <input type="radio" style="display: none;" name="tipo" id="carro" value="carro" checked>
-                    <label for="carro" class="circular-radio"><span>✓</span>Carro</label>
+        </div>
+        <div class="cuadro_salida">
+            
 
-                    <input type="radio" style="display: none;" name="tipo" id="moto" value="moto">
-                    <label for="moto" class="circular-radio"><span>✓</span>Moto</label>
-
-                    <input type="radio" style="display: none;" name="tipo" id="hibrido" value="hibrido">
-                    <label for="hibrido" class="circular-radio"><span>✓</span>Híbrido</label>
+                <div class="cuadro_valor">
+                    <h3 id="total"></h3>
                 </div>
+            </div>
+            <div class="placa_salida">
+                
+                    <strong>
+                        <h1 class="titulo_placa">Placa Vehiculo</h1>
+                    </strong>
+                    <div class="placa ">
 
+                        <label for="text"></label>
+                        <input type="text" id="placa" maxlength="6" placeholder="Digite la placa ">
+                        <div class="btn-conteiner">
+                            <button class="btn-content mt-10" onclick="calcularPrecio()">
+                                Total
+                            </button>
+                        </div>
+                    </div>
+                    <div class="placa_total">
+                        <div>
+                        <strong>
+                            <h1 class="titulo_tipo">Valor a pagar</h1>
+                        </strong>
+                        <input type="text" id="tipo" maxlength="7" placeholder=" ">
+                        
+                    </div>
 
-
-            </fieldset>
-        </form>
-
-
-<button type="button"  onclick="entrada()" > confirmar </button>
-
+            </div>
+            
     </main>
 
 </body>

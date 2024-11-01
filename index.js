@@ -16,6 +16,11 @@ function ingresar() {
     window.location.href = "./ingreso.html";
   } else {
     // Muestra alerta si las credenciales son incorrectas
-    alert("Usuario o contraseña inválidos");
+    
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text:"Usuario o contraseña inválidos"
+    })
   }
 }

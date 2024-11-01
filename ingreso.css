@@ -59,7 +59,8 @@ button:active {
 
 }
 
-#placa {
+#placaingreso,
+#placasalida {
     padding: 10px ;
     font-size: 35px ;
     text-transform: uppercase;

@@ -1,8 +1,8 @@
 let ingresos = [];
 
 function entrada() {
-  let placa = document.getElementById("placaingreso").value;
-  let tipo = document.getElementById("tipo").value;
+  let placa = document.getElementById("placaingreso").value.toUpperCase();
+  let tipo = document.getElementById("tipo").value.toUpperCase();
   let hora = new Date(); // Guardamos la hora como objeto Date
   let datos = {
     placa: placa,
@@ -28,7 +28,7 @@ function entrada() {
 }
 
 function salida() {
-  let placa = document.getElementById("placasalida").value;
+  let placa = document.getElementById("placasalida").value.toUpperCase();
   let horaSalida = new Date();
   
   // Buscar el índice del objeto con la placa específica en el array

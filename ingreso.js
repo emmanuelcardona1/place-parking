@@ -37,6 +37,7 @@ function salida() {
   // Buscar el índice del objeto con la placa específica en el array
   let index = ingresos.findIndex((ingreso) => ingreso.placa === placa);
   if (index !== -1) {
+    ingresos[index].horaSalida = horaSalida;
     // Obtener la hora de entrada almacenada
     let horaEntrada = ingresos[index].horaEntrada;
 
@@ -81,6 +82,7 @@ function salida() {
       footer: '<a href="#">Why do I have this issue?</a>'
     })
   }
+
 }
 
 function imprimirSalida() {
@@ -127,3 +129,78 @@ function imprimirSalida() {
   ventanaImpresion.document.close();
   ventanaImpresion.print();
 }
+function calcularReporteDiario() {
+  const ahora = new Date();
+  const fechaActual = ahora.toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+  let totalGanancias = 0;
+  let reportes = [];
+
+  // Agrupar los ingresos que tienen salidas registradas para el día actual
+  ingresos.forEach((ingreso) => {
+      if (ingreso.horaSalida) {
+          const fechaSalida = ingreso.horaSalida.toISOString().split('T')[0];
+          if (fechaSalida === fechaActual) {
+              const tiempoHoras = (ingreso.horaSalida - ingreso.horaEntrada) / (1000 * 60 * 60);
+              const precioPorHora = 5000; // Precio por hora
+              const precioTotal = Math.ceil(tiempoHoras) * precioPorHora;
+
+              totalGanancias += precioTotal;
+
+              reportes.push({
+                  idTicket: ingreso.idTicket,
+                  placa: ingreso.placa,
+                  tipo: ingreso.tipo,
+                  horaEntrada: ingreso.horaEntrada.toLocaleTimeString(),
+                  horaSalida: ingreso.horaSalida.toLocaleTimeString(),
+                  total: precioTotal,
+              });
+          }
+      }
+  });
+
+  // Generar tabla para el reporte
+  let contenidoTabla = `
+      <table border="1" style="width: 100%; text-align: center;">
+          <thead>
+              <tr>
+                  <th>ID Ticket</th>
+                  <th>Placa</th>
+                  <th>Tipo</th>
+                  <th>Hora Entrada</th>
+                  <th>Hora Salida</th>
+                  <th>Total (COP)</th>
+              </tr>
+          </thead>
+          <tbody>
+  `;
+
+  reportes.forEach((reporte) => {
+      contenidoTabla += `
+          <tr>
+              <td>${reporte.idTicket}</td>
+              <td>${reporte.placa}</td>
+              <td>${reporte.tipo}</td>
+              <td>${reporte.horaEntrada}</td>
+              <td>${reporte.horaSalida}</td>
+              <td>${reporte.total.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
+          </tr>
+      `;
+  });
+
+  contenidoTabla += `
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="5" style="font-weight: bold;">Total Ganancias</td>
+                  <td style="font-weight: bold;">${totalGanancias.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
+              </tr>
+          </tfoot>
+      </table>
+  `;
+
+  // Mostrar el reporte en un modal
+  const modal = document.getElementById("modal-imprimir");
+  modal.classList.remove("hidden");
+  document.getElementById("contenido-impresion").innerHTML = contenidoTabla;
+}
+

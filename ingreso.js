@@ -25,6 +25,9 @@ function entrada() {
   celdaPlaca.textContent = datos.placa;
   celdaTipo.textContent = datos.tipo;
   celdaHora.textContent = datos.horaEntrada.toLocaleTimeString();
+
+  
+
 }
 
 function salida() {
@@ -78,4 +81,49 @@ function salida() {
       footer: '<a href="#">Why do I have this issue?</a>'
     })
   }
+}
+
+function imprimirSalida() {
+  let placa = document.getElementById("placasalida").value.toUpperCase();
+  let valor = document.getElementById("total").innerText;
+
+  if (!placa || !valor) {
+      Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Por favor complete los datos de la salida antes de imprimir."
+      });
+      return;
+  }
+
+  const ventanaImpresion = window.open('', '_blank');
+  ventanaImpresion.document.open();
+  ventanaImpresion.document.write(`
+      <html>
+      <head>
+          <title>Información de Salida</title>
+          <style>
+              body {
+                  font-family: 'Montserrat', sans-serif;
+                  text-align: center;
+                  margin: 20px;
+              }
+              h1 {
+                  color: #AF6543;
+              }
+              p {
+                  font-size: 18px;
+              }
+          </style>
+      </head>
+      <body>
+          <h1>Información de Salida</h1>
+          <p><strong>Placa del Vehículo:</strong> ${placa}</p>
+          <p><strong>Valor a Pagar:</strong> ${valor}</p>
+          <p>¡Gracias por utilizar nuestro servicio!</p>
+      </body>
+      </html>
+  `);
+  ventanaImpresion.document.close();
+  ventanaImpresion.print();
 }

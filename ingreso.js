@@ -38,27 +38,38 @@ function salida() {
   let index = ingresos.findIndex((ingreso) => ingreso.placa === placa);
   if (index !== -1) {
     ingresos[index].horaSalida = horaSalida;
-    // Obtener la hora de entrada almacenada
     let horaEntrada = ingresos[index].horaEntrada;
 
     // Calcular la diferencia de tiempo en horas
-    const tiempoTotalHoras = (horaSalida - horaEntrada) / (1000 * 60 * 60); // Diferencia en horas
+    const tiempoTotalHoras = (horaSalida - horaEntrada) / (1000 * 60 * 60);
 
-    // Validar si la hora de salida es posterior a la de entrada
     if (tiempoTotalHoras <= 0) {
       alert("La fecha y hora de salida debe ser posterior a la de entrada.");
       return;
     }
 
-    // Calcular el precio total
-    const precioPorHora = 5000; // Precio por hora en COP
-    const precioTotal = Math.ceil(tiempoTotalHoras) * precioPorHora; // Redondear hacia arriba
+    // Calcular el precio base
+    const precioPorHora = 5000;
+    let precioTotal = Math.ceil(tiempoTotalHoras) * precioPorHora;
 
-    // Mostrar el precio total en un elemento adecuado
+    // Aplicar descuento si el tipo es "HÍBRIDO"
+    if (ingresos[index].tipo === "HIBRIDO") {
+      precioTotal *= 0.9; // Aplica un descuento del 10%
+      Swal.fire({
+        icon: "info",
+        title: "Vehículo Híbrido",
+        text: " Gracias por contribuir con el medio ambiente y se aplicó un descuento del 10% para el vehículo híbrido con placa " + placa,
+      });
+    }
 
-    document.getElementById("total").innerText = "$" + precioTotal;
+    if (ingresos[index].tipo === "MOTO") {
+      precioTotal *= 0.60 ; // Aplica un descuento del 10%
+    
+    }
+    // Mostrar el precio total
+    document.getElementById("total").innerText = "$" + precioTotal.toFixed(0);
 
-    // Eliminar el objeto del array basado en el índice encontrado    
+    // Eliminar el objeto del array
     ingresos.splice(index, 1);
     console.log(ingresos);
 
@@ -66,7 +77,6 @@ function salida() {
     let tabla = document.getElementById("tabla").getElementsByTagName("tbody")[0];
     let filas = tabla.getElementsByTagName("tr");
 
-    // Recorrer las filas de la tabla y eliminar la fila que tenga el atributo data-placa igual a la placa ingresada
     for (let i = 0; i < filas.length; i++) {
       if (filas[i].getAttribute("data-placa") === placa) {
         tabla.deleteRow(i);
@@ -74,16 +84,15 @@ function salida() {
       }
     }
   } else {
-    
     Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "Placa no encontrada en los registros",
       footer: '<a href="#">Why do I have this issue?</a>'
-    })
+    });
   }
-
 }
+
 
 function imprimirSalida() {
   let placa = document.getElementById("placasalida").value.toUpperCase();
@@ -122,85 +131,17 @@ function imprimirSalida() {
           <h1>Información de Salida</h1>
           <p><strong>Placa del Vehículo:</strong> ${placa}</p>
           <p><strong>Valor a Pagar:</strong> ${valor}</p>
+         
           <p>¡Gracias por utilizar nuestro servicio!</p>
+         
+
       </body>
       </html>
   `);
   ventanaImpresion.document.close();
   ventanaImpresion.print();
 }
-function calcularReporteDiario() {
-  const ahora = new Date();
-  const fechaActual = ahora.toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
-  let totalGanancias = 0;
-  let reportes = [];
 
-  // Agrupar los ingresos que tienen salidas registradas para el día actual
-  ingresos.forEach((ingreso) => {
-      if (ingreso.horaSalida) {
-          const fechaSalida = ingreso.horaSalida.toISOString().split('T')[0];
-          if (fechaSalida === fechaActual) {
-              const tiempoHoras = (ingreso.horaSalida - ingreso.horaEntrada) / (1000 * 60 * 60);
-              const precioPorHora = 5000; // Precio por hora
-              const precioTotal = Math.ceil(tiempoHoras) * precioPorHora;
 
-              totalGanancias += precioTotal;
 
-              reportes.push({
-                  idTicket: ingreso.idTicket,
-                  placa: ingreso.placa,
-                  tipo: ingreso.tipo,
-                  horaEntrada: ingreso.horaEntrada.toLocaleTimeString(),
-                  horaSalida: ingreso.horaSalida.toLocaleTimeString(),
-                  total: precioTotal,
-              });
-          }
-      }
-  });
-
-  // Generar tabla para el reporte
-  let contenidoTabla = `
-      <table border="1" style="width: 100%; text-align: center;">
-          <thead>
-              <tr>
-                  <th>ID Ticket</th>
-                  <th>Placa</th>
-                  <th>Tipo</th>
-                  <th>Hora Entrada</th>
-                  <th>Hora Salida</th>
-                  <th>Total (COP)</th>
-              </tr>
-          </thead>
-          <tbody>
-  `;
-
-  reportes.forEach((reporte) => {
-      contenidoTabla += `
-          <tr>
-              <td>${reporte.idTicket}</td>
-              <td>${reporte.placa}</td>
-              <td>${reporte.tipo}</td>
-              <td>${reporte.horaEntrada}</td>
-              <td>${reporte.horaSalida}</td>
-              <td>${reporte.total.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
-          </tr>
-      `;
-  });
-
-  contenidoTabla += `
-          </tbody>
-          <tfoot>
-              <tr>
-                  <td colspan="5" style="font-weight: bold;">Total Ganancias</td>
-                  <td style="font-weight: bold;">${totalGanancias.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
-              </tr>
-          </tfoot>
-      </table>
-  `;
-
-  // Mostrar el reporte en un modal
-  const modal = document.getElementById("modal-imprimir");
-  modal.classList.remove("hidden");
-  document.getElementById("contenido-impresion").innerHTML = contenidoTabla;
-}
-
+ 

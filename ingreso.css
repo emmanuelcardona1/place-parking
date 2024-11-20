@@ -18,7 +18,7 @@ button {
 }
 
 button:hover {
-    background: #ffffff;
+    background: #AF6543;
 }
 
 button>svg {
@@ -178,7 +178,7 @@ button:active {
 /* SVG animations */
 @keyframes color_anim {
     0% {
-        fill: white;
+        fill: rgb(255, 255, 255);
     }
 
     50% {

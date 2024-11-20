@@ -97,6 +97,8 @@ function salida() {
 function imprimirSalida() {
   let placa = document.getElementById("placasalida").value.toUpperCase();
   let valor = document.getElementById("total").innerText;
+  let tipo = document.getElementById("tipo").value.toUpperCase();
+  let hora = new Date();
 
   if (!placa || !valor) {
       Swal.fire({
@@ -128,9 +130,12 @@ function imprimirSalida() {
           </style>
       </head>
       <body>
+       
           <h1>Información de Salida</h1>
           <p><strong>Placa del Vehículo:</strong> ${placa}</p>
           <p><strong>Valor a Pagar:</strong> ${valor}</p>
+          <p><strong>Tipo de Vehículo:</strong> ${tipo}</p>
+         <p><strong>Hora impresión:</strong> ${hora}</p>
          
           <p>¡Gracias por utilizar nuestro servicio!</p>
          

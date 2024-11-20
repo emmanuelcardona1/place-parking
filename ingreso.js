@@ -41,7 +41,7 @@ function salida() {
     let horaEntrada = ingresos[index].horaEntrada;
 
     // Calcular la diferencia de tiempo en horas
-    const tiempoTotalHoras = (horaSalida - horaEntrada) / (1000 * 60 * 60);
+    let tiempoTotalHoras = (horaSalida - horaEntrada) / (1000 * 60 * 60);
 
     if (tiempoTotalHoras <= 0) {
       alert("La fecha y hora de salida debe ser posterior a la de entrada.");
@@ -49,7 +49,7 @@ function salida() {
     }
 
     // Calcular el precio base
-    const precioPorHora = 5000;
+    let precioPorHora = 5000;
     let precioTotal = Math.ceil(tiempoTotalHoras) * precioPorHora;
 
     // Aplicar descuento si el tipo es "HÍBRIDO"
@@ -63,7 +63,7 @@ function salida() {
     }
 
     if (ingresos[index].tipo === "MOTO") {
-      precioTotal *= 0.60 ; // Aplica un descuento del 10%
+      precioTotal *= 0.60 ; 
     
     }
     // Mostrar el precio total
@@ -109,7 +109,7 @@ function imprimirSalida() {
       return;
   }
 
-  const ventanaImpresion = window.open('', '_blank');
+  let ventanaImpresion = window.open('', '_blank');
   ventanaImpresion.document.open();
   ventanaImpresion.document.write(`
       <html>
